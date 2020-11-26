@@ -305,6 +305,7 @@ function setPlaceList(placeList) {
                 
                 html += '<div class="controls">';
                     // 현재 a태그로 이동 후 지도가 날라가는 현상이 있음. 실서버에서 테스트해볼것.
+                    // 확인 결과 지도 날라감... iframe으로 변경해야될듯?
                     html += '<a href="' + place.p_kp_url + '" target="_blank"><div class="control kakao-place"></div></a>';
                     html += '<div class="control location" p_id="' + place.p_id + '" lat="' + place.p_latitude + '" lng="' + place.p_longitude + '"><i class="fas fa-map-marker-alt"></i></div>';
                 html += '</div>';

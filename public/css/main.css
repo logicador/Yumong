@@ -30,11 +30,11 @@ section.main .kakao-map-button i {
 	-o-transform: translate(50%, 50%);
 	transform: translate(50%, 50%);
 }
-section.main .kakao-map-button:hover,
+/* section.main .kakao-map-button:hover, */
 section.main .kakao-map-button.selected {
     background: #0B84FE;
 }
-section.main .kakao-map-button:hover i,
+/* section.main .kakao-map-button:hover i, */
 section.main .kakao-map-button.selected i {
     color: #FFFFFF;
 }
@@ -76,8 +76,8 @@ section.main .kakao-map-place-code-list .place-code p {
     border-radius: 4px;
     box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0,0,0,.12);
 }
-section.main .kakao-map-place-code-list .place-code p.selected,
-section.main .kakao-map-place-code-list .place-code p:hover {
+/* section.main .kakao-map-place-code-list .place-code p:hover, */
+section.main .kakao-map-place-code-list .place-code p.selected {
     color: #FFFFFF;
     background: #0B84FE;
 }
@@ -144,11 +144,11 @@ section.main .kakao-map-place-code-list.up {
 	-o-transform: scale(1.3);
 	transform: scale(1.3);
 }
-.place-marker:hover {
+/* .place-marker:hover {
     background: rgba(11, 132, 254, 0.9);
-}
-.place-marker.selected i,
-.place-marker:hover i {
+} */
+/* .place-marker:hover i, */
+.place-marker.selected i {
     color: #FFFFFF;
 }
 
@@ -337,12 +337,12 @@ section.main .place-list-wrapper .place-list-body .place-list .place .header .co
 	-o-transform: translate(50%, 50%);
 	transform: translate(50%, 50%);
 }
-section.main .place-list-wrapper .place-list-body .place-list .place .header .controls .control:hover {
+/* section.main .place-list-wrapper .place-list-body .place-list .place .header .controls .control:hover {
     background: #0B84FE;
 }
 section.main .place-list-wrapper .place-list-body .place-list .place .header .controls .control:hover i {
     color: #FFFFFF;
-}
+} */
 section.main .place-list-wrapper .place-list-body .place-list .place .header .controls .control.kakao-place {
     background-image: url(/img/kakao_map_icon.png);
 	background-size: cover;

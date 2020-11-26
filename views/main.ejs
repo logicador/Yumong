@@ -1,0 +1,38 @@
+
+<section class="main">
+
+    <div id="divKakaoMap" class="kakao-map"></div>
+
+    <div id="divGps" class="kakao-map-button gps"><i class="fas fa-location-arrow"></i></div>
+
+    <div id="divRefresh" class="kakao-map-button refresh"><i class="fas fa-redo-alt"></i></div>
+
+    <div id="divShowPlaceList" class="kakao-map-button list"><i class="fas fa-stream"></i></div>
+
+    <div class="kakao-map-place-code-list">
+        <div class="place-code"><p place_code="ACM">숙박</p></div>
+        <div class="place-code"><p place_code="MRT">마트</p></div>
+        <div class="place-code"><p place_code="CAF">카페</p></div>
+        <div class="place-code"><p place_code="RST">음식점</p></div>
+        <div class="place-code"><p class="selected" place_code="ATR">가볼만한곳</p></div>
+    </div>
+
+    <div id="divPlaceListWrapper" class="place-list-wrapper">
+        <div class="place-list-header">
+            <div class="place-list-header-wrapper">
+                <p><i class="fas fa-stream"></i>목록으로 보기</p>
+                <div id="divPlaceListMaximize" class="control"><i class="fal fa-expand"></i></div>
+                <div id="divPlaceListMinimize" class="control hide"><i class="fal fa-compress"></i></div>
+                <div id="divPlaceListClose" class="control"><i class="fal fa-times"></i></div>
+            </div>
+        </div>
+        <div class="place-list-body">
+            <div class="filters">
+                <button order="POP">인기순</button>
+                <button class="selected" order="DIST">거리순</button>
+            </div>
+            <div id="divPlaceList" class="place-list"></div>
+        </div>
+    </div>
+
+</section>

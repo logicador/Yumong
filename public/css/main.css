@@ -1,0 +1,372 @@
+
+section.main {
+    height: calc(100vh - 160px);
+    position: relative;
+}
+
+section.main .kakao-map {
+    height: 100%;
+}
+
+section.main .kakao-map-button {
+    position: absolute;
+    background: #FFFFFF;
+    width: 40px;
+    height: 40px;
+    z-index: 1;
+    cursor: pointer;
+    border-radius: 6px;
+    box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0,0,0,.12);
+}
+section.main .kakao-map-button i {
+    font-size: 1.2rem;
+    color: #0B84FE;
+    position: absolute;
+	right: 50%;
+	bottom: 50%;
+    -webkit-transform: translate(50%, 50%);
+	-moz-transform: translate(50%, 50%);
+	-ms-transform: translate(50%, 50%);
+	-o-transform: translate(50%, 50%);
+	transform: translate(50%, 50%);
+}
+section.main .kakao-map-button:hover,
+section.main .kakao-map-button.selected {
+    background: #0B84FE;
+}
+section.main .kakao-map-button:hover i,
+section.main .kakao-map-button.selected i {
+    color: #FFFFFF;
+}
+
+section.main .kakao-map-button.gps {
+    right: 16px;
+    top: 16px;
+}
+section.main .kakao-map-button.refresh {
+    right: 16px;
+    top: 64px;
+}
+section.main .kakao-map-button.list {
+    right: 16px;
+    bottom: 16px;
+}
+
+section.main .kakao-map-place-code-list {
+    position: absolute;
+    left: 16px;
+    bottom: 16px;
+    z-index: 1;
+}
+section.main .kakao-map-place-code-list .place-code {
+    margin: 8px 0;
+}
+section.main .kakao-map-place-code-list .place-code:last-child {
+    margin-bottom: 0;
+}
+section.main .kakao-map-place-code-list .place-code p {
+    font-size: 0.8rem;
+    display: inline-block;
+    font-weight: 500;
+    background: #FFFFFF;
+    color: #0B84FE;
+    padding: 6px 12px;
+    margin: 0;
+    cursor: pointer;
+    border-radius: 4px;
+    box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0,0,0,.12);
+}
+section.main .kakao-map-place-code-list .place-code p.selected,
+section.main .kakao-map-place-code-list .place-code p:hover {
+    color: #FFFFFF;
+    background: #0B84FE;
+}
+
+section.main .kakao-map-button.refresh.up,
+section.main .kakao-map-place-code-list.up {
+    bottom: 336px;
+}
+
+.gps-marker {
+    width: 24px;
+    height: 24px;
+    background: #FFFFFF;
+    border-radius: 50%;
+    position: relative;
+    
+    box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0,0,0,.12);
+}
+.gps-marker > div {
+    width: 70%;
+    height: 70%;
+    background: #0B84FE;
+    border-radius: 50%;
+    position: absolute;
+	right: 50%;
+	bottom: 50%;
+    -webkit-transform: translate(50%, 50%);
+	-moz-transform: translate(50%, 50%);
+	-ms-transform: translate(50%, 50%);
+	-o-transform: translate(50%, 50%);
+	transform: translate(50%, 50%);
+}
+
+.place-marker {
+    cursor: pointer;
+    width: 28px;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    border: 1px solid #0B84FE;
+    position: relative;
+
+    box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0,0,0,.12);
+}
+.place-marker i {
+    font-size: 14px;
+    color: #0B84FE;
+    position: absolute;
+    
+	right: 50%;
+	bottom: 50%;
+    -webkit-transform: translate(50%, 50%);
+	-moz-transform: translate(50%, 50%);
+	-ms-transform: translate(50%, 50%);
+	-o-transform: translate(50%, 50%);
+	transform: translate(50%, 50%);
+}
+.place-marker.selected {
+    background: rgba(11, 132, 254, 0.9);
+
+    -webkit-transform: scale(1.3);
+	-moz-transform: scale(1.3);
+	-ms-transform: scale(1.3);
+	-o-transform: scale(1.3);
+	transform: scale(1.3);
+}
+.place-marker:hover {
+    background: rgba(11, 132, 254, 0.9);
+}
+.place-marker.selected i,
+.place-marker:hover i {
+    color: #FFFFFF;
+}
+
+
+section.main .place-list-wrapper {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 320px;
+    display: none;
+    background: #FFFFFF;
+}
+section.main .place-list-wrapper.maximize {
+    height: 100%;
+    z-index: 2;
+}
+section.main .place-list-wrapper .place-list-header {
+    height: 56px;
+    border-bottom: 1px solid #EFEFEF;
+    font-size: 0;
+    text-align: right;
+    position: relative;
+}
+section.main .place-list-wrapper .place-list-header .place-list-header-wrapper {
+    width: 100%;
+    padding: 0 20px;
+
+    position: absolute;
+    left: 0;
+	bottom: 50%;
+    -webkit-transform: translateY(50%);
+	-moz-transform: translateY(50%);
+	-ms-transform: translateY(50%);
+	-o-transform: translateY(50%);
+	transform: translateY(50%);
+}
+section.main .place-list-wrapper .place-list-header .place-list-header-wrapper > p {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 300;
+    position: absolute;
+    left: 20px;
+	bottom: 50%;
+    -webkit-transform: translateY(50%);
+	-moz-transform: translateY(50%);
+	-ms-transform: translateY(50%);
+	-o-transform: translateY(50%);
+	transform: translateY(50%);
+}
+section.main .place-list-wrapper .place-list-header .place-list-header-wrapper > p i {
+    margin-right: 10px;
+    color: #0B84FE;
+}
+section.main .place-list-wrapper .place-list-header .place-list-header-wrapper .control {
+    display: inline-block;
+    vertical-align: middle;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    margin-left: 8px;
+}
+section.main .place-list-wrapper .place-list-header .place-list-header-wrapper .control.hide {
+    display: none;
+}
+section.main .place-list-wrapper .place-list-header .place-list-header-wrapper .control:hover {
+    background: #EFEFEF;
+}
+section.main .place-list-wrapper .place-list-header .place-list-header-wrapper .control:active {
+    background: #DFDFDF;
+}
+section.main .place-list-wrapper .place-list-header .place-list-header-wrapper .control i {
+    font-size: 1.2rem;
+    position: absolute;
+	right: 50%;
+	bottom: 50%;
+    -webkit-transform: translate(50%, 50%);
+	-moz-transform: translate(50%, 50%);
+	-ms-transform: translate(50%, 50%);
+	-o-transform: translate(50%, 50%);
+	transform: translate(50%, 50%);
+}
+section.main .place-list-wrapper .place-list-body {
+    height: calc(100% - 56px);
+    overflow-y: auto;
+}
+section.main .place-list-wrapper .place-list-body .filters {
+    font-size: 0;
+    padding: 8px 20px;
+}
+section.main .place-list-wrapper .place-list-body .filters button {
+    margin-right: 10px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    padding: 2px 8px;
+    border-radius: 16px;
+    background: #FFFFFF;
+    color: #0B84FE;
+    border: 1px solid #0B84FE;
+}
+section.main .place-list-wrapper .place-list-body .filters button.selected {
+    background: #0B84FE;
+    color: #FFFFFF;
+}
+section.main .place-list-wrapper .place-list-body .place-list {
+    font-size: 0;
+    padding: 0 20px;
+}
+section.main .place-list-wrapper .place-list-body .place-list .place {
+    margin-bottom: 16px;
+    border: 1px solid #DFDFDF;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+section.main .place-list-wrapper .place-list-body .place-list .place .header {
+    position: relative;
+}
+section.main .place-list-wrapper .place-list-body .place-list .place .header .cate {
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: #888888;
+    margin: 0;
+}
+section.main .place-list-wrapper .place-list-body .place-list .place .header .name {
+    font-size: 1.2rem;
+    margin: 2px 0 0 0;
+}
+section.main .place-list-wrapper .place-list-body .place-list .place .header .social {
+    margin-top: 2px;
+}
+section.main .place-list-wrapper .place-list-body .place-list .place .header .social p {
+    font-size: 0.8rem;
+    font-weight: 300;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 8px 0 0;
+    color: #888888;
+}
+section.main .place-list-wrapper .place-list-body .place-list .place .header .social i {
+    margin-right: 2px;
+}
+section.main .place-list-wrapper .place-list-body .place-list .place .header .social p.like i {
+    color: #fe4a49;
+}
+section.main .place-list-wrapper .place-list-body .place-list .place .header .social p.comment i {
+    color: #333333;
+}
+section.main .place-list-wrapper .place-list-body .place-list .place .header .controls {
+    font-size: 0;
+
+    position: absolute;
+    right: 0;
+	bottom: 50%;
+    -webkit-transform: translateY(50%);
+	-moz-transform: translateY(50%);
+	-ms-transform: translateY(50%);
+	-o-transform: translateY(50%);
+	transform: translateY(50%);
+}
+section.main .place-list-wrapper .place-list-body .place-list .place .header .controls .control {
+    display: inline-block;
+    vertical-align: middle;
+
+    border: 1px solid #0B84FE;
+    background :#FFFFFF;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    position: relative;
+
+    margin-left: 10px;
+    box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0,0,0,.12);
+}
+section.main .place-list-wrapper .place-list-body .place-list .place .header .controls .control i {
+    font-size: 20px;
+    color: #0B84FE;
+    position: absolute;
+	right: 50%;
+	bottom: 50%;
+    -webkit-transform: translate(50%, 50%);
+	-moz-transform: translate(50%, 50%);
+	-ms-transform: translate(50%, 50%);
+	-o-transform: translate(50%, 50%);
+	transform: translate(50%, 50%);
+}
+section.main .place-list-wrapper .place-list-body .place-list .place .header .controls .control:hover {
+    background: #0B84FE;
+}
+section.main .place-list-wrapper .place-list-body .place-list .place .header .controls .control:hover i {
+    color: #FFFFFF;
+}
+section.main .place-list-wrapper .place-list-body .place-list .place .header .controls .control.kakao-place {
+    background-image: url(/img/kakao_map_icon.png);
+	background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+}
+section.main .place-list-wrapper .place-list-body .place-list .place .images {
+    font-size: 0;
+    margin-top: 20px;
+    height: 160px;
+}
+section.main .place-list-wrapper .place-list-body .place-list .place .images .image {
+    width: calc(25% - 3px);
+    height: 100%;
+    margin-left: 4px;
+
+    display: inline-block;
+    vertical-align: middle;
+
+	background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+section.main .place-list-wrapper .place-list-body .place-list .place .images .image:first-child {
+    margin-left: 0;
+}

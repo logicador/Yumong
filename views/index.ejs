@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+    <meta http-equiv="cleartype" content="on" />
+    <meta name="description" content="Yumong" />
+    <meta name="keywords"  content="" />
+    <meta name="theme-color" content="#fff">
+
+    <title>여몽 | 여행을 꿈꾸다</title>
+
+    <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <!-- <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="/css/common.css" />
+
+    <% if (menu == 'login') { %>
+        <link rel="stylesheet" type="text/css" href="/css/login.css" />
+
+    <% } else if (menu == 'main') { %>
+        <link rel="stylesheet" type="text/css" href="/css/main.css" />
+    <% } else if (menu == 'search') { %>
+        <link rel="stylesheet" type="text/css" href="/css/search.css" />
+    <% } else if (menu == 'note') { %>
+        <link rel="stylesheet" type="text/css" href="/css/note.css" />
+    <% } else if (menu == 'mypage') { %>
+        <link rel="stylesheet" type="text/css" href="/css/mypage.css" />
+    <% } %>
+</head>
+<body>
+    <input id="inputHiddenMenu" type="hidden" value="<%= menu %>" />
+
+    <header>
+        <div class="wrapper">
+            <button class="back" onclick="javascript:history.back()" <% if (!isShowBackButton) { %> style="display: none" <% } %>>
+                <i class="far fa-chevron-left"></i>
+            </button>
+            <p class="title"><%- title %></p>
+        </div>
+    </header>
+
+    <article class="wrapper">
+        <% if (menu == 'login') { %>
+            <% include ./login %>
+
+        <% } else if (menu == 'main') { %> 
+            <% include ./main %>
+        <% } else if (menu == 'search') { %> 
+            <% include ./search %>
+        <% } else if (menu == 'note') { %> 
+            <% include ./note %>
+        <% } else if (menu == 'mypage') { %> 
+            <% include ./mypage %>
+        <% } %>
+    </article>
+
+    <footer>
+        <div class="wrapper">
+            <div class="menu-list">
+                <a href="/"><div class="menu <% if (menu == 'main') { %>selected<% } %>">
+                    <div class="menu-wrapper">
+                        <i class="fal fa-home-lg"></i>
+                        <p>홈</p>
+                    </div>
+                </div></a>
+                <a href="/search"><div class="menu <% if (menu == 'search') { %>selected<% } %>">
+                    <div class="menu-wrapper">
+                        <i class="fal fa-search"></i>
+                        <p>검색</p>
+                    </div>
+                </div></a>
+                <a href="/note"><div class="menu <% if (menu == 'note') { %>selected<% } %>">
+                    <div class="menu-wrapper">
+                        <i class="fal fa-route"></i>
+                        <p>여행노트</p>
+                    </div>
+                </div></a>
+                <a href="/mypage"><div class="menu <% if (menu == 'mypage') { %>selected<% } %>">
+                    <div class="menu-wrapper">
+                        <i class="fal fa-user"></i>
+                        <p>마이페이지</p>
+                    </div>
+                </div></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js" integrity="sha512-Meww2sXqNHxI1+5Dyh/9KAtvI9RZSA4c1K2k5iL02oiPO/RH3Q30L3M1albtqMg50u4gRTYdV4EXOQqXEI336A==" crossorigin="anonymous"></script>
+    <!-- <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script> -->
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a867b91a895042aa8465713cb9bb518e"></script>
+    <script src="/js/common.js"></script>
+
+    <% if (menu == 'login') { %>
+        <script src="/js/login.js"></script>
+
+    <% } else if (menu == 'main') { %>
+        <script src="/js/main.js"></script>
+    <% } else if (menu == 'search') { %>
+        <script src="/js/search.js"></script>
+    <% } else if (menu == 'note') { %>
+        <script src="/js/note.js"></script>
+    <% } else if (menu == 'mypage') { %>
+        <script src="/js/mypage.js"></script>
+    <% } %>
+
+</body>
+</html>

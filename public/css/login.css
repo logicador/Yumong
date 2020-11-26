@@ -1,0 +1,20 @@
+
+section.login {
+    height: calc(100vh - 160px);
+}
+
+section.login .container {
+    text-align: center;
+}
+
+section.login .container .kakao-login {
+    width: 400px;
+    max-width: 100%;
+    cursor: pointer;
+    margin: 32px auto 0 auto;
+}
+section.login .container .kakao-login img {
+    width: 100%;
+    height: auto;
+    vertical-align: middle;
+}

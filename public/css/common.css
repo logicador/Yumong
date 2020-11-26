@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,400,500,600,700,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kirang+Haerang&display=swap');
 
 
 *, *:before, *:after {
@@ -63,6 +65,14 @@ textarea::placeholder {
 
 button {
 	background: transparent;
+}
+
+
+.jua-font {
+    font-family: 'Jua', sans-serif;
+}
+.kirang-font {
+    font-family: 'Kirang Haerang', cursive;
 }
 
 
@@ -237,7 +247,7 @@ footer .wrapper .menu-list .menu.selected {
     width: 60px;
     height: 60px;
 
-    z-index: 1001;
+    z-index: 1002;
 }
 .lds-hourglass:after {
     content: " ";

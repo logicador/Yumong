@@ -5,17 +5,22 @@ $(document).ready(function() {
 });
 
 
-function createOverlay() {
-    $('body').addClass('overflow-hidden');
-    $('body').append('<div class="overlay transparent"></div>');
+function intComma(value) {
+    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
-function removeOverlay() {
-    $('body').removeClass('overflow-hidden');
-    $('.overlay').remove();
+
+
+function createOverlay(background, key) {
+    // $('body').addClass('overflow-hidden');
+    $('body').append('<div class="overlay ' + background + '" key="' + key + '"></div>');
 }
-function createSpinner() {
-    $('body').append('<div class="lds-hourglass"></div>');
+function removeOverlay(key) {
+    // $('body').removeClass('overflow-hidden');
+    $('.overlay[key=' + key + ']').remove();
 }
-function removeSpinner() {
-    $('.lds-hourglass').remove();
+function createSpinner(key) {
+    $('body').append('<div class="lds-hourglass" key="' + key + '"></div>');
+}
+function removeSpinner(key) {
+    $('.lds-hourglass[key=' + key + ']').remove();
 }

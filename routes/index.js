@@ -5,7 +5,7 @@ var router = express.Router();
 router.get('/login', function(req, res, next) {
     res.render('index', {
         menu: 'login',
-        title: '<span class="highlight"><i class="fad fa-plane-alt"></i> 여몽</span> <span class="sub">여행을 꿈꾸다</span>',
+        title: '<span class="sub">여행을 꿈꾸다.</span> <span class="kirang-font highlight">여몽</span>',
     
         isShowBackButton: false
     });
@@ -15,7 +15,7 @@ router.get('/login', function(req, res, next) {
 router.get('/', function (req, res, next) {
     res.render('index', {
         menu: 'main',
-        title: '<span class="highlight"><i class="fad fa-plane-alt"></i> 여몽</span> <span class="sub">여행을 꿈꾸다</span>',
+        title: '<span class="sub">여행을 꿈꾸다.</span> <span class="kirang-font highlight">여몽</span>',
         
         isShowBackButton: false
     });

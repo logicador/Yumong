@@ -51,6 +51,10 @@ section.main .kakao-map-button.list {
     right: 16px;
     bottom: 16px;
 }
+section.main .kakao-map-button.search {
+    left: 16px;
+    top: 16px;
+}
 
 section.main .kakao-map-place-code-list {
     position: absolute;
@@ -82,7 +86,6 @@ section.main .kakao-map-place-code-list .place-code p.selected {
     background: #0B84FE;
 }
 
-section.main .kakao-map-button.refresh.up,
 section.main .kakao-map-place-code-list.up {
     bottom: 336px;
 }
@@ -158,7 +161,7 @@ section.main .place-list-wrapper {
     left: 0;
     bottom: 0;
     width: 100%;
-    height: 320px;
+    height: 360px;
     display: none;
     background: #FFFFFF;
 }
@@ -257,13 +260,18 @@ section.main .place-list-wrapper .place-list-body .filters button.selected {
 }
 section.main .place-list-wrapper .place-list-body .place-list {
     font-size: 0;
-    padding: 0 20px;
+    padding: 20px;
+    border-top: 1px solid #EFEFEF;
 }
 section.main .place-list-wrapper .place-list-body .place-list .place {
-    margin-bottom: 16px;
-    border: 1px solid #DFDFDF;
-    padding: 20px;
+    border-bottom: 1px solid #EFEFEF;
     margin-bottom: 20px;
+    padding-bottom: 20px;
+}
+section.main .place-list-wrapper .place-list-body .place-list .place:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
 }
 section.main .place-list-wrapper .place-list-body .place-list .place .header {
     position: relative;
@@ -286,11 +294,11 @@ section.main .place-list-wrapper .place-list-body .place-list .place .header .so
     font-weight: 300;
     display: inline-block;
     vertical-align: middle;
-    margin: 0 8px 0 0;
+    margin: 0 10px 0 0;
     color: #888888;
 }
 section.main .place-list-wrapper .place-list-body .place-list .place .header .social i {
-    margin-right: 2px;
+    margin-right: 4px;
 }
 section.main .place-list-wrapper .place-list-body .place-list .place .header .social p.like i {
     color: #fe4a49;
@@ -314,7 +322,6 @@ section.main .place-list-wrapper .place-list-body .place-list .place .header .co
     display: inline-block;
     vertical-align: middle;
 
-    border: 1px solid #0B84FE;
     background :#FFFFFF;
     border-radius: 50%;
     width: 40px;
@@ -348,17 +355,16 @@ section.main .place-list-wrapper .place-list-body .place-list .place .header .co
 	background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    border: none;
 }
 section.main .place-list-wrapper .place-list-body .place-list .place .images {
     font-size: 0;
-    margin-top: 20px;
-    height: 160px;
+    margin-top: 10px;
+    height: 120px;
 }
 section.main .place-list-wrapper .place-list-body .place-list .place .images .image {
-    width: calc(25% - 3px);
+    width: calc(20% - 4px);
     height: 100%;
-    margin-left: 4px;
+    margin-left: 5px;
 
     display: inline-block;
     vertical-align: middle;
@@ -369,4 +375,95 @@ section.main .place-list-wrapper .place-list-body .place-list .place .images .im
 }
 section.main .place-list-wrapper .place-list-body .place-list .place .images .image:first-child {
     margin-left: 0;
+}
+
+
+
+.dialog-place-search {
+    width: 360px;
+    height: 400px;
+    background: #FFFFFF;
+    box-shadow: 0px 11px 15px -7px rgba(0, 0, 0, 0.2), 0px 24px 38px 3px rgba(0, 0, 0, 0.14), 0px 9px 46px 8px rgba(0,0,0,.12);
+
+    position: absolute;
+	right: 50%;
+	bottom: 50%;
+    -webkit-transform: translate(50%, 50%);
+	-moz-transform: translate(50%, 50%);
+	-ms-transform: translate(50%, 50%);
+	-o-transform: translate(50%, 50%);
+    transform: translate(50%, 50%);
+    
+    z-index: 1000;
+
+    border-radius: 8px;
+    overflow: hidden;
+}
+.dialog-place-search .header {
+    position: relative;
+    padding: 16px;
+    height: 60px;
+}
+.dialog-place-search .header .header-wrapper {
+    width: 100%;
+    padding: 0 16px;
+    position: absolute;
+    left: 0;
+	bottom: 50%;
+    -webkit-transform: translateY(50%);
+	-moz-transform: translateY(50%);
+	-ms-transform: translateY(50%);
+	-o-transform: translateY(50%);
+	transform: translateY(50%);
+}
+.dialog-place-search .header .header-wrapper .title {
+    margin: 0;
+    font-size: 1.2rem;
+}
+.dialog-place-search .header .header-wrapper .close {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+
+    position: absolute;
+    right: 10px;
+	bottom: 50%;
+    -webkit-transform: translateY(50%);
+	-moz-transform: translateY(50%);
+	-ms-transform: translateY(50%);
+	-o-transform: translateY(50%);
+	transform: translateY(50%);
+}
+.dialog-place-search .header .header-wrapper .close i {
+    font-size: 1.2rem;
+    position: absolute;
+	right: 50%;
+	bottom: 50%;
+    -webkit-transform: translate(50%, 50%);
+	-moz-transform: translate(50%, 50%);
+	-ms-transform: translate(50%, 50%);
+	-o-transform: translate(50%, 50%);
+    transform: translate(50%, 50%);
+}
+.dialog-place-search .header .header-wrapper .close:hover {
+    background: #EFEFEF;
+}
+.dialog-place-search .header .header-wrapper .close:active {
+    background: #DFDFDF;
+}
+.dialog-place-search input {
+    font-size: 1rem;
+    width: 100%;
+    border: none;
+    height: 50px;
+    background: #f8f8f8;
+    padding: 0 16px;
+    border-top: 1px solid #EFEFEF;
+    border-bottom: 1px solid #EFEFEF;
+}
+.dialog-place-search .search-place-list {
+    background: thistle;
+    height: calc(100% - 110px);
+    overflow-y: auto;
 }

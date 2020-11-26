@@ -23,9 +23,10 @@ $(document).ready(function () {
     });
 
     if (navigator.geolocation) {
+        alert('geolocation 가능함');
         setUserGps(false, true);
     } else {
-        userGpsMarker = new kakao.maps.CustomOverlay({  
+        userGpsMarker = new kakao.maps.CustomOverlay({
             map: kakaoMap,
             position: centerLoc,
             content: '<div class="gps-marker"><div></div></div>'
@@ -89,7 +90,7 @@ $(document).ready(function () {
     // 리스트 크게
     $('#divPlaceListMaximize').click(function() {
         $('#divPlaceListWrapper').addClass('maximize');
-        $(this).addClass('hide'); 
+        $(this).addClass('hide');
         $('#divPlaceListMinimize').removeClass('hide'); // .show() 하면 display: block을 달아버림;
     });
 
@@ -169,7 +170,7 @@ $(document).ready(function () {
         var position = $('.place-list-wrapper .place-list-body .place-list .place[p_id=' + $(this).attr('p_id') + ']').position();
         $('.place-list-wrapper .place-list-body').scrollTop(position.top - 60);
     });
-    
+
 });
 
 
@@ -183,7 +184,7 @@ function setUserGps(isMoveMap, isGetPlaces) {
         var lat = position.coords.latitude;
         var lng = position.coords.longitude;
         var locPosition = new kakao.maps.LatLng(lat, lng);
-        userGpsMarker = new kakao.maps.CustomOverlay({  
+        userGpsMarker = new kakao.maps.CustomOverlay({
             map: kakaoMap,
             position: locPosition,
             content: '<div class="gps-marker"><div></div></div>'
@@ -251,7 +252,7 @@ function getPlaces(lat, lng, zoom) {
                     markerContentHtml += '<i class="fas fa-coffee"></i>';
                 }
                 markerContentHtml += '</div>';
-                
+
                 var marker = new kakao.maps.CustomOverlay({
                     map: kakaoMap,
                     position: markerPosition,
@@ -302,7 +303,7 @@ function setPlaceList(placeList) {
                     html += '<p class="like"><i class="fal fa-heart"></i><span>255</span></p>';
                     html += '<p class="comment"><i class="fal fa-comment"></i><span>144</span></p>';
                 html += '</div>';
-                
+
                 html += '<div class="controls">';
                     // 현재 a태그로 이동 후 지도가 날라가는 현상이 있음. 실서버에서 테스트해볼것.
                     html += '<a href="' + place.p_kp_url + '" target="_blank"><div class="control kakao-place"></div></a>';

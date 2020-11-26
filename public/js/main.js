@@ -23,7 +23,6 @@ $(document).ready(function () {
     });
 
     if (navigator.geolocation) {
-        alert('geolocation 가능함');
         setUserGps(false, true);
     } else {
         userGpsMarker = new kakao.maps.CustomOverlay({

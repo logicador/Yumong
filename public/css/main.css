@@ -87,7 +87,7 @@ section.main .kakao-map-place-code-list .place-code p.selected {
 }
 
 section.main .kakao-map-place-code-list.up {
-    bottom: 336px;
+    bottom: 376px;
 }
 
 .gps-marker {
@@ -381,7 +381,9 @@ section.main .place-list-wrapper .place-list-body .place-list .place .images .im
 
 .dialog-place-search {
     width: 360px;
+    max-width: 90%;
     height: 400px;
+    max-height: 90%;
     background: #FFFFFF;
     box-shadow: 0px 11px 15px -7px rgba(0, 0, 0, 0.2), 0px 24px 38px 3px rgba(0, 0, 0, 0.14), 0px 9px 46px 8px rgba(0,0,0,.12);
 

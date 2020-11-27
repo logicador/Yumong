@@ -55,6 +55,6 @@ function getPlaceCodeIconHtml(placeCode) {
     } else if (placeCode == 'CAF') {
         return '<i class="fas fa-coffee"></i>';
     } else {
-        return '';
+        return '<i class="fas fa-map-marker-alt"></i>';
     }
 }

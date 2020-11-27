@@ -435,6 +435,9 @@ function setUserGps(isMoveMap, isGetPlaces) {
             $('#divGps').removeClass('selected');
         },
         function() { // 에러, 현재 지도 중심 기준으로 place 호출
+            var zoom = kakaoMap.getLevel();
+            if (zoom > maxZoom) { return; }
+
             var centerLoc = kakaoMap.getCenter();
             getPlaces(centerLoc.getLat(), centerLoc.getLng(), zoom);
             $('#divGps').removeClass('selected');

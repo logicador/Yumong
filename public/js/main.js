@@ -358,8 +358,10 @@ $(document).ready(function () {
                 var placeCode = getPlaceCodeFromPlaceCateGroupCode(place.p_cate_group_code);
 
                 // placeCode로 숙박/마트/카페/음식점/가볼만한곳 세팅
-                $('section.main .kakao-map-place-code-list .place-code p.selected').removeClass('selected');
-                $('section.main .kakao-map-place-code-list .place-code p[place_code=' + placeCode + ']').addClass('selected');
+                if (placeCode) {
+                    $('section.main .kakao-map-place-code-list .place-code p.selected').removeClass('selected');
+                    $('section.main .kakao-map-place-code-list .place-code p[place_code=' + placeCode + ']').addClass('selected');
+                }
 
                 // 마커 세팅
                 var markerPosition  = new kakao.maps.LatLng(place.p_latitude, place.p_longitude);
@@ -530,7 +532,7 @@ function setPlaceList(placeList) {
                 html += '<a href="' + place.p_kp_url + '" target="_blank"><div class="control kakao-place"></div></a>';
                 html += '<div class="control location" p_id="' + place.p_id + '" lat="' + place.p_latitude + '" lng="' + place.p_longitude + '"><i class="fas fa-map-marker-alt"></i></div>';
             html += '</div>';
-            html += '<p class="cates"><span class="highlight">' + place.p_cate_group_name + '</span>' + place.p_cate_name + '</p>';
+            html += '<p class="cates">' + ((place.p_cate_group_name) ? '<span class="highlight">' + place.p_cate_group_name + '</span>' : '') + place.p_cate_name + '</p>';
             html += '<p class="name">' + place.p_name + '</p>';
             html += '<p class="address">' + ((place.p_road_address) ? place.p_road_address : place.p_address) + '</p>';
             html += '<div class="social">';

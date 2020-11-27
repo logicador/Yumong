@@ -124,6 +124,12 @@ section.main .kakao-map-place-code-list.up {
     position: relative;
 
     box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0,0,0,.12);
+
+    -webkit-transition: all .1s linear;
+    -moz-transition: all .1s linear;
+    -ms-transition: all .1s linear;
+    -o-transition: all .1s linear;
+    transition: all .1s linear;
 }
 .place-marker i {
     font-size: 14px;
@@ -267,29 +273,36 @@ section.main .place-list-wrapper .place-list-body .place-list .place {
     border-bottom: 1px solid #EFEFEF;
     margin-bottom: 20px;
     padding-bottom: 20px;
+    position: relative;
 }
 section.main .place-list-wrapper .place-list-body .place-list .place:last-child {
     border-bottom: none;
     margin-bottom: 0;
     padding-bottom: 0;
 }
-section.main .place-list-wrapper .place-list-body .place-list .place .header {
-    position: relative;
-}
-section.main .place-list-wrapper .place-list-body .place-list .place .header .cate {
+section.main .place-list-wrapper .place-list-body .place-list .place .cates {
     font-size: 0.8rem;
     font-weight: 300;
     color: #888888;
     margin: 0;
 }
-section.main .place-list-wrapper .place-list-body .place-list .place .header .name {
+section.main .place-list-wrapper .place-list-body .place-list .place .cates span {
+    font-weight: 400;
+    margin-right: 8px;
+}
+section.main .place-list-wrapper .place-list-body .place-list .place .name {
     font-size: 1.2rem;
     margin: 2px 0 0 0;
 }
-section.main .place-list-wrapper .place-list-body .place-list .place .header .social {
+section.main .place-list-wrapper .place-list-body .place-list .place .address {
+    font-size: 0.8rem;
+    color: #888888;
+    margin: 2px 0 0 0;
+}
+section.main .place-list-wrapper .place-list-body .place-list .place .social {
     margin-top: 2px;
 }
-section.main .place-list-wrapper .place-list-body .place-list .place .header .social p {
+section.main .place-list-wrapper .place-list-body .place-list .place .social p {
     font-size: 0.8rem;
     font-weight: 300;
     display: inline-block;
@@ -297,28 +310,22 @@ section.main .place-list-wrapper .place-list-body .place-list .place .header .so
     margin: 0 10px 0 0;
     color: #888888;
 }
-section.main .place-list-wrapper .place-list-body .place-list .place .header .social i {
+section.main .place-list-wrapper .place-list-body .place-list .place .social i {
     margin-right: 4px;
 }
-section.main .place-list-wrapper .place-list-body .place-list .place .header .social p.like i {
+section.main .place-list-wrapper .place-list-body .place-list .place .social p.like i {
     color: #fe4a49;
 }
-section.main .place-list-wrapper .place-list-body .place-list .place .header .social p.comment i {
+section.main .place-list-wrapper .place-list-body .place-list .place .social p.comment i {
     color: #333333;
 }
-section.main .place-list-wrapper .place-list-body .place-list .place .header .controls {
+section.main .place-list-wrapper .place-list-body .place-list .place .controls {
     font-size: 0;
-
     position: absolute;
+    top: 0;
     right: 0;
-	bottom: 50%;
-    -webkit-transform: translateY(50%);
-	-moz-transform: translateY(50%);
-	-ms-transform: translateY(50%);
-	-o-transform: translateY(50%);
-	transform: translateY(50%);
 }
-section.main .place-list-wrapper .place-list-body .place-list .place .header .controls .control {
+section.main .place-list-wrapper .place-list-body .place-list .place .controls .control {
     display: inline-block;
     vertical-align: middle;
 
@@ -332,7 +339,7 @@ section.main .place-list-wrapper .place-list-body .place-list .place .header .co
     margin-left: 10px;
     box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0,0,0,.12);
 }
-section.main .place-list-wrapper .place-list-body .place-list .place .header .controls .control i {
+section.main .place-list-wrapper .place-list-body .place-list .place .controls .control i {
     font-size: 20px;
     color: #0B84FE;
     position: absolute;
@@ -344,13 +351,13 @@ section.main .place-list-wrapper .place-list-body .place-list .place .header .co
 	-o-transform: translate(50%, 50%);
 	transform: translate(50%, 50%);
 }
-/* section.main .place-list-wrapper .place-list-body .place-list .place .header .controls .control:hover {
+/* section.main .place-list-wrapper .place-list-body .place-list .place .controls .control:hover {
     background: #0B84FE;
 }
-section.main .place-list-wrapper .place-list-body .place-list .place .header .controls .control:hover i {
+section.main .place-list-wrapper .place-list-body .place-list .place .controls .control:hover i {
     color: #FFFFFF;
 } */
-section.main .place-list-wrapper .place-list-body .place-list .place .header .controls .control.kakao-place {
+section.main .place-list-wrapper .place-list-body .place-list .place .controls .control.kakao-place {
     background-image: url(/img/kakao_map_icon.png);
 	background-size: cover;
     background-repeat: no-repeat;
@@ -380,9 +387,9 @@ section.main .place-list-wrapper .place-list-body .place-list .place .images .im
 
 
 .dialog-place-search {
-    width: 360px;
+    width: 500px;
     max-width: 90%;
-    height: 400px;
+    height: 500px;
     max-height: 90%;
     background: #FFFFFF;
     box-shadow: 0px 11px 15px -7px rgba(0, 0, 0, 0.2), 0px 24px 38px 3px rgba(0, 0, 0, 0.14), 0px 9px 46px 8px rgba(0,0,0,.12);
@@ -459,13 +466,57 @@ section.main .place-list-wrapper .place-list-body .place-list .place .images .im
     width: 100%;
     border: none;
     height: 50px;
-    background: #f8f8f8;
     padding: 0 16px;
+    background: #f8f8f8;
     border-top: 1px solid #EFEFEF;
     border-bottom: 1px solid #EFEFEF;
+    /* border-radius: 0; */
+}
+.dialog-place-search input:focus {
+    background: #f4f4f4;
 }
 .dialog-place-search .search-place-list {
-    background: thistle;
     height: calc(100% - 110px);
     overflow-y: auto;
+}
+.dialog-place-search .search-place-list .place {
+    cursor: pointer;
+    padding: 0 16px;
+}
+.dialog-place-search .search-place-list .place .place-wrapper {
+    border-bottom: 1px solid #EFEFEF;
+    position: relative;
+    padding: 8px 0;
+}
+.dialog-place-search .search-place-list .place:hover {
+    background :#EFEFEF;
+}
+.dialog-place-search .search-place-list .place:active {
+    background: #DFDFDF;
+}
+.dialog-place-search .search-place-list .place:last-child .place-wrapper {
+    border-bottom: none;
+}
+.dialog-place-search .search-place-list .place .place-wrapper .cate-group-name {
+    font-size: 0.8rem;
+    margin: 0;
+    color: #0B84FE
+}
+.dialog-place-search .search-place-list .place .place-wrapper .cate-name {
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: #888888;
+    margin: 0;
+    position: absolute;
+    top: 8px;
+    right: 0;
+}
+.dialog-place-search .search-place-list .place .place-wrapper .name {
+    font-size: 1.2rem;
+    margin: 0;
+}
+.dialog-place-search .search-place-list .place .place-wrapper .address {
+    font-size: 0.8rem;
+    color: #888888;
+    margin: 0;
 }

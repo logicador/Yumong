@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var request = require('request');
 
 
 router.get('/get/places', function (req, res) {
@@ -64,6 +65,101 @@ router.get('/get/places', function (req, res) {
 
         res.json({status: 'OK', result: result });
     });
+});
+
+
+router.get('/get/kakao/places', function (req, res) {
+    var keyword = req.query.keyword;
+    var page = req.query.page;
+
+    if (f.is_none(keyword)) {
+        res.json({ status: 'ERR_WRONG_KEYWORD' });
+        return;
+    }
+
+    if (f.is_none(page)) page = 1;
+
+    request.get({
+        uri: 'https://dapi.kakao.com/v2/local/search/keyword.json?query=' + encodeURI(keyword) + '&page=' + page,
+        headers: {
+            Authorization: 'KakaoAK c3cc426e36dba5cd8dc4275cd6532bf0'
+        }
+    }, function(error, response) {
+        if (error) {
+            console.log(error);
+            res.json({ status: 'ERR_KAKAO_PLACE' });
+            return;
+        }
+
+        var result = JSON.parse(response.body);
+        var isEnd = result.meta.is_end;
+        var placeList = result.documents;
+
+        res.json({ status: 'OK', result: { isEnd: isEnd, placeList: placeList } });
+    });
+});
+
+
+router.post('/add/place/from/user/search', function (req, res) {
+    var placeString = req.body.place_string;
+
+    if (f.is_none(placeString)) {
+        res.json({ status: 'ERR_WRONG_PLACE_STRING' });
+        return;
+    }
+    
+    var place = JSON.parse(placeString);
+
+    console.log(place);
+
+    var query = "SELECT * FROM t_places WHERE p_kp_id = ?";
+    var params = [place.id];
+    
+    o.mysql.query(query, params, function(error, result) {
+        if (error) {
+            console.log(error);
+            res.json({ status: 'ERR_MYSQL' });
+            return;
+        }
+
+        // 먼저 가져온 place가 저장 되어있는지부터 확인
+        if (result.length > 0) {
+            res.json({ status: 'OK', result: result[0] });
+
+        } else {
+            // 처음 보는 place면 저장
+            query = "INSERT INTO t_places";
+            query += " (p_kp_id, p_name, p_cate_group_code, p_cate_group_name, p_cate_name, p_address,";
+            query += " p_road_address, p_phone, p_latitude, p_longitude, p_kp_url, p_location) VALUES";
+            query += " (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, POINT(" + place.x + ", " + place.y + "))";
+            params = [
+                place.id, place.place_name, place.category_group_code, place.category_group_name,
+                place.category_name, place.address_name, place.road_address_name, place.phone,
+                place.y, place.x, place.place_url
+            ];
+            o.mysql.query(query, params, function(error, result) {
+                if (error) {
+                    console.log(error);
+                    res.json({ status: 'ERR_MYSQL' });
+                    return;
+                }
+
+                query = "SELECT * FROM t_places WHERE p_kp_id = ?";
+                params = [place.id];
+                o.mysql.query(query, params, function(error, result) {
+                    if (error) {
+                        console.log(error);
+                        res.json({ status: 'ERR_MYSQL' });
+                        return;
+                    }
+    
+                    res.json({ status: 'OK', result: result[0] });
+                });
+            });
+        }
+
+    });
+
 });
 
 

@@ -7,6 +7,8 @@ var userGpsMarker = null;
 var visiblePlaceList = [];
 var isRequestingPlace = false;
 
+
+// Start document ready
 $(document).ready(function () {
 
     var centerLoc = new kakao.maps.LatLng(37.501328, 126.987233);
@@ -63,14 +65,14 @@ $(document).ready(function () {
     });
 
     // 숙박, 마트, 카페, 음식점, 가볼만한곳 클릭 이벤트
-    $('.kakao-map-place-code-list .place-code p').click(function() {
+    $('section.main .kakao-map-place-code-list .place-code p').click(function() {
         var zoom = kakaoMap.getLevel();
         if (zoom > maxZoom) {
             alert('지도를 더 확대해주세요.');
             return;
         }
 
-        $('.kakao-map-place-code-list .place-code p.selected').removeClass('selected');
+        $('section.main .kakao-map-place-code-list .place-code p.selected').removeClass('selected');
         $(this).addClass('selected');
 
         var centerLoc = kakaoMap.getCenter();
@@ -84,7 +86,7 @@ $(document).ready(function () {
         // 카카오지도 크기 변경하면 반드시 호출할 것
         kakaoMap.relayout(); 
         // place code들 위로 올려줘야됨
-        $('.kakao-map-place-code-list').addClass('up');
+        $('section.main .kakao-map-place-code-list').addClass('up');
         $(this).hide();
         // 리스트뷰 show
         $('#divPlaceListWrapper').show();
@@ -95,7 +97,7 @@ $(document).ready(function () {
         // 지도 크기 원복
         $('#divKakaoMap').height('100%');
         kakaoMap.relayout();
-        $('.kakao-map-place-code-list').removeClass('up');
+        $('section.main .kakao-map-place-code-list').removeClass('up');
         // 목록보기 버튼 다시 보이게
         $('#divShowPlaceList').show();
         // 최대화 해제 먼저 하고
@@ -120,7 +122,7 @@ $(document).ready(function () {
     });
 
     // 리스트뷰 정렬순서 버튼
-    $('.place-list-wrapper .place-list-body .filters button').click(function() {
+    $('section.main .place-list-wrapper .place-list-body .filters button').click(function() {
         var order = $(this).attr('order');
 
         alert(order);
@@ -148,25 +150,23 @@ $(document).ready(function () {
         $('.place-marker.selected').parent().css('z-index', 0);
         $('.place-marker.selected').removeClass('selected');
 
-        // 지도 먼저 이동해서 마커가 보여야 컨트롤 할 수 있음
         $('#divShowPlaceList').click();
-        var locPosition = new kakao.maps.LatLng($(this).attr('lat'), $(this).attr('lng'));
-        kakaoMap.setCenter(locPosition);
+        // 지도 중앙 이동 기능 중지
+        // 지도 먼저 이동해서 마커가 보여야 컨트롤 할 수 있음
+        // var locPosition = new kakao.maps.LatLng($(this).attr('lat'), $(this).attr('lng'));
+        // kakaoMap.setCenter(locPosition);
 
-        // 지도 이동 후에도 한번 지워줌
-        $('.place-marker.selected').parent().css('z-index', 0);
-        $('.place-marker.selected').removeClass('selected');
+        // // 지도 이동 후에도 한번 지워줌
+        // $('.place-marker.selected').parent().css('z-index', 0);
+        // $('.place-marker.selected').removeClass('selected');
 
         $(this).parent().css('z-index', 1);
         $(this).addClass('selected');
 
-        // var place = JSON.parse($($(this).children('input').get(0)).val());
-        // console.log(place);
-
         // 플레이스 리스트 스크롤 세팅
-        $('.place-list-wrapper .place-list-body').scrollTop(0); // 스크롤에 따라 position이 가변적임;;
-        var position = $('.place-list-wrapper .place-list-body .place-list .place[p_id=' + $(this).attr('p_id') + ']').position();
-        $('.place-list-wrapper .place-list-body').scrollTop(position.top - 60);
+        $('section.main .place-list-wrapper .place-list-body').scrollTop(0); // 스크롤에 따라 position이 가변적임;;
+        var position = $('section.main .place-list-wrapper .place-list-body .place-list .place[p_id=' + $(this).attr('p_id') + ']').position();
+        $('section.main .place-list-wrapper .place-list-body').scrollTop(position.top - (56 + 41 - 20 - 10));
     });
     // 마커 오버 이벤트 (부모의 z-index를 변경해줘야해서 js 이벤트로 주는거임)
     $(document).on('mouseenter', '.place-marker', function() {
@@ -179,8 +179,8 @@ $(document).ready(function () {
     });
 
     // 리스트에서 지도 아이콘 클릭 (해당 플레이스 selected)
-    $(document).on('click', '.place-list-wrapper .place-list-body .place-list .place .header .controls .control', function() {
-        
+    $(document).on('click', 'section.main .place-list-wrapper .place-list-body .place-list .place .controls .control', function() {
+
         // 지도 이동 전에 한번 지워주고
         $('.place-marker.selected').parent().css('z-index', 0);
         $('.place-marker.selected').removeClass('selected');
@@ -198,21 +198,206 @@ $(document).ready(function () {
         $('.place-marker[p_id=' + $(this).attr('p_id') + ']').addClass('selected');
 
         // 플레이스 리스트 스크롤 세팅
-        $('.place-list-wrapper .place-list-body').scrollTop(0); // 스크롤에 따라 position이 가변적임;;
-        var position = $('.place-list-wrapper .place-list-body .place-list .place[p_id=' + $(this).attr('p_id') + ']').position();
-        $('.place-list-wrapper .place-list-body').scrollTop(position.top - 60);
+        $('section.main .place-list-wrapper .place-list-body').scrollTop(0); // 스크롤에 따라 position이 가변적임;;
+        var position = $('section.main .place-list-wrapper .place-list-body .place-list .place[p_id=' + $(this).attr('p_id') + ']').position();
+        $('section.main .place-list-wrapper .place-list-body').scrollTop(position.top - (56 + 41 - 20 - 10));
     });
 
     $('#divOpenPlaceSearchDialog').click(function() {
-        // createOverlay('dark', 'DIALOG_PLACE_SEARCH');
+        createOverlay('dark', 'DIALOG_PLACE_SEARCH');
+        var html = '';
+        html += '<div class="dialog-place-search">';
+            html += '<div class="header">';
+                html += '<div class="header-wrapper">';
+                    html += '<p class="title">장소 검색하기</p>';
+                    html += '<div class="close"><i class="fal fa-times"></i></div>';
+                html += '</div>';
+            html += '</div>';
+            html += '<input type="text" placeholder="검색어를 입력해주세요." />';
+            html += '<div class="search-place-list"></div>';
+        html += '</div>';
+        $('body').append(html);
+
+        var timerList = [];
+        var keyword = '';
+        var req_keyword = '';
+        var page = 1;
+        var isEndOfPlaceList = false;
+        var isScrollLoading = false;
+
+        var clearDialogSearchPlaceList = function() {
+            page = 1;
+            isEndOfPlaceList = false;
+            $('.dialog-place-search .search-place-list').empty();
+        };
+
+        var callbackAfterResponse = function(response) {
+            if (response.status != 'OK') {
+                alert('에러가 발생했습니다.\n\n[' + response.status + ']');
+                removeOverlay('GET_DIALOG_PLACE_SEARCH');
+                removeSpinner('GET_DIALOG_PLACE_SEARCH');
+                return;
+            }
+
+            var isEnd = response.result.isEnd;
+            var placeList = response.result.placeList;
+
+            if (isEnd) isEndOfPlaceList = true;
+
+            var html = '';
+            for (var i = 0; i < placeList.length; i++) {
+                var place = placeList[i];
+
+                html += '<div class="place">';
+                    html += '<input type="hidden" value="' + JSON.stringify(place).replace(/\"/gi, "&quot;") + '" />';
+                    html += '<div class="place-wrapper">';
+                        html += '<p class="cate-group-name">' + ((place.category_group_name) ? place.category_group_name : '&nbsp;') + '</p>';
+                        html += '<p class="cate-name">' + place.category_name + '</p>';
+                        html += '<p class="name">' + place.place_name + '</p>';
+                        html += '<p class="address">' + ((place.road_address_name) ? place.road_address_name : place.address_name) + '</p>';
+                    html += '</div>';
+                html += '</div>';
+            }
+
+            $('.dialog-place-search .search-place-list').append(html);
+
+            removeOverlay('GET_DIALOG_PLACE_SEARCH');
+            removeSpinner('GET_DIALOG_PLACE_SEARCH');
+        };
+
+        // 키를 누를때 타이머들 다 죽이면서 초기화
+        $('.dialog-place-search input').keydown(function() {
+            for (var i = 0; i < timerList.length; i++) { clearTimeout(timerList[i]); }
+            clearDialogSearchPlaceList();
+        });
+
+        // 키를 땔때 timer 0.25초 돌리면서 이후
+        $('.dialog-place-search input').keyup(function() {
+            // 입력값이 키워드랑 똑같고 page가 1이면 중복쿼리로 간주
+            // timer가 0.25초인데 그 안에 입력해버리면 발생함.
+            if ($(this).val() == keyword && page == 1) return;
+
+            keyword = $(this).val();
+            if (keyword.length < 1) {
+                $('.dialog-place-search .search-place-list').empty();
+                return;
+            }
+
+            clearDialogSearchPlaceList();
+
+            // 입력 후 0.25초 후에 실행시키기 위함
+            var timer = setTimeout(function() {
+                clearDialogSearchPlaceList();
+
+                createOverlay('transparent', 'GET_DIALOG_PLACE_SEARCH');
+                createSpinner('GET_DIALOG_PLACE_SEARCH');
+                $.get(
+                    '/webapi/get/kakao/places',
+                    { keyword: keyword, page: page },
+                    function(response) {
+                        callbackAfterResponse(response);
+                    },
+                    'json'
+                );
+
+            }, 250);
+            timerList.push(timer);
+        });
+
+        // 인피니티 스크롤 이벤트
+        $('.dialog-place-search .search-place-list').scroll(function() {
+            if ($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight - 20) {
+                if (isEndOfPlaceList) return;
+                if (isScrollLoading) return;
+
+                isScrollLoading = true;
+
+                page++;
+
+                createOverlay('transparent', 'GET_DIALOG_PLACE_SEARCH');
+                createSpinner('GET_DIALOG_PLACE_SEARCH');
+                $.get(
+                    '/webapi/get/kakao/places',
+                    { keyword: keyword, page: page },
+                    function(response) {
+                        callbackAfterResponse(response);
+                        isScrollLoading = false;
+                    },
+                    'json'
+                );
+            }
+        });
     });
 
     $(document).on('click', '.dialog-place-search .header .close', function() {
         $('.dialog-place-search').remove();
         removeOverlay('DIALOG_PLACE_SEARCH');
     });
+
+    $(document).on('click', '.dialog-place-search .search-place-list .place', function() {
+        var placeString = $($(this).children('input').get(0)).val();
+        // var place = JSON.parse($($(this).children('input').get(0)).val());
+        
+        createOverlay('transparent', 'SELECT_DIALOG_PLACE_SEARCH');
+        createSpinner('SELECT_DIALOG_PLACE_SEARCH');
+        $.post(
+            '/webapi/add/place/from/user/search',
+            { place_string: placeString },
+            function(response) {
+                if (response.status != 'OK') {
+                    alert('에러가 발생했습니다.');
+                    removeOverlay('SELECT_DIALOG_PLACE_SEARCH');
+                    removeSpinner('SELECT_DIALOG_PLACE_SEARCH');
+                    return;
+                }
+
+                // 기존 플레이스들 싹 없애주고
+                removeAllVisiblePlaces();
+                
+                var place = response.result;
+                var placeCode = getPlaceCodeFromPlaceCateGroupCode(place.p_cate_group_code);
+
+                // placeCode로 숙박/마트/카페/음식점/가볼만한곳 세팅
+                $('section.main .kakao-map-place-code-list .place-code p.selected').removeClass('selected');
+                $('section.main .kakao-map-place-code-list .place-code p[place_code=' + placeCode + ']').addClass('selected');
+
+                // 마커 세팅
+                var markerPosition  = new kakao.maps.LatLng(place.p_latitude, place.p_longitude);
+                var markerContentHtml = '';
+                markerContentHtml += '<div class="place-marker" p_id="' + place.p_id + '" name="' + place.p_name + '" lat="' + place.p_latitude + '" lng="' + place.p_longitude + '">';
+                markerContentHtml += getPlaceCodeIconHtml(placeCode);
+                markerContentHtml += '</div>';
+                var marker = new kakao.maps.CustomOverlay({
+                    map: kakaoMap,
+                    position: markerPosition,
+                    content: markerContentHtml
+                });
+
+                place.marker = marker;
+                visiblePlaceList.push(place);
+                setPlaceList(visiblePlaceList);
+
+                $('#divShowPlaceList').click();
+
+                // 플레이스로 지도 이동
+                var locPosition = new kakao.maps.LatLng(place.p_latitude, place.p_longitude);
+                kakaoMap.setCenter(locPosition);
+
+                // 마커 선택 select
+                $('.place-marker[p_id=' + place.p_id + ']').parent().css('z-index', 1);
+                $('.place-marker[p_id=' + place.p_id + ']').addClass('selected');
+
+                removeOverlay('SELECT_DIALOG_PLACE_SEARCH');
+                removeSpinner('SELECT_DIALOG_PLACE_SEARCH');
+                removeOverlay('DIALOG_PLACE_SEARCH');
+                $('.dialog-place-search').remove();
+            },
+            'json'
+        );
+    });
     
 });
+// End document ready
 
 
 // 사용자 gps 활성화
@@ -267,10 +452,10 @@ function getPlaces(lat, lng, zoom) {
     createOverlay('transparent', 'GET_PLACES');
     createSpinner('GET_PLACES');
 
-    var place_code = $('.kakao-map-place-code-list .place-code p.selected').attr('place_code');
+    var placeCode = $('section.main .kakao-map-place-code-list .place-code p.selected').attr('place_code');
     $.get(
         '/webapi/get/places',
-        { search_type: 'DIST', lat: lat, lng: lng, zoom: zoom, place_code: place_code },
+        { search_type: 'DIST', lat: lat, lng: lng, zoom: zoom, place_code: placeCode },
         function(response) {
             removeAllVisiblePlaces();
 
@@ -288,24 +473,10 @@ function getPlaces(lat, lng, zoom) {
 
                 // 마커 세팅
                 var markerPosition  = new kakao.maps.LatLng(place.p_latitude, place.p_longitude);
-
                 var markerContentHtml = '';
                 markerContentHtml += '<div class="place-marker" p_id="' + place.p_id + '" name="' + place.p_name + '" lat="' + place.p_latitude + '" lng="' + place.p_longitude + '">';
-                // markerContentHtml += '<input type="hidden" value="' + JSON.stringify(place).replace(/\"/gi, "&quot;") + '" />';
-
-                if (place_code == 'ATR') {
-                    markerContentHtml += '<i class="fas fa-monument"></i>';
-                } else if (place_code == 'MRT') {
-                    markerContentHtml += '<i class="fas fa-shopping-basket"></i>';
-                } else if (place_code == 'ACM') {
-                    markerContentHtml += '<i class="fas fa-bed"></i>';
-                } else if (place_code == 'RST') {
-                    markerContentHtml += '<i class="fas fa-utensils"></i>';
-                } else if (place_code == 'CAF') {
-                    markerContentHtml += '<i class="fas fa-coffee"></i>';
-                }
+                markerContentHtml += getPlaceCodeIconHtml(getPlaceCodeFromPlaceCateGroupCode(place.p_cate_group_code));
                 markerContentHtml += '</div>';
-                
                 var marker = new kakao.maps.CustomOverlay({
                     map: kakaoMap,
                     position: markerPosition,
@@ -350,20 +521,18 @@ function setPlaceList(placeList) {
         var place = placeList[i];
 
         html += '<div class="place" p_id="' + place.p_id + '">';
-            html += '<div class="header">';
-                html += '<p class="cate">' + place.p_cate_name + '</p>';
-                html += '<p class="name">' + place.p_name + '</p>';
-                html += '<div class="social">';
-                    html += '<p class="like"><i class="fal fa-heart"></i><span>' + intComma(place.p_like_count) + '</span></p>';
-                    html += '<p class="comment"><i class="fal fa-comment"></i><span>' + intComma(place.p_comment_count) + '</span></p>';
-                html += '</div>';
-                
-                html += '<div class="controls">';
-                    // 현재 a태그로 이동 후 지도가 날라가는 현상이 있음. 실서버에서 테스트해볼것.
-                    // 확인 결과 지도 날라감... iframe으로 변경해야될듯?
-                    html += '<a href="' + place.p_kp_url + '" target="_blank"><div class="control kakao-place"></div></a>';
-                    html += '<div class="control location" p_id="' + place.p_id + '" lat="' + place.p_latitude + '" lng="' + place.p_longitude + '"><i class="fas fa-map-marker-alt"></i></div>';
-                html += '</div>';
+            html += '<div class="controls">';
+                // 현재 a태그로 이동 후 지도가 날라가는 현상이 있음. 실서버에서 테스트해볼것.
+                // 확인 결과 지도 날라감... iframe으로 변경해야될듯?
+                html += '<a href="' + place.p_kp_url + '" target="_blank"><div class="control kakao-place"></div></a>';
+                html += '<div class="control location" p_id="' + place.p_id + '" lat="' + place.p_latitude + '" lng="' + place.p_longitude + '"><i class="fas fa-map-marker-alt"></i></div>';
+            html += '</div>';
+            html += '<p class="cates"><span class="highlight">' + place.p_cate_group_name + '</span>' + place.p_cate_name + '</p>';
+            html += '<p class="name">' + place.p_name + '</p>';
+            html += '<p class="address">' + ((place.p_road_address) ? place.p_road_address : place.p_address) + '</p>';
+            html += '<div class="social">';
+                html += '<p class="like"><i class="fal fa-heart"></i><span>' + intComma(place.p_like_count) + '</span></p>';
+                html += '<p class="comment"><i class="fal fa-comment"></i><span>' + intComma(place.p_comment_count) + '</span></p>';
             html += '</div>';
             html += '<div class="images">';
                 html += '<div class="image" style="background-image: url(/img/sample_iu.jpg);"></div>';

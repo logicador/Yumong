@@ -35,7 +35,7 @@ $(document).ready(function () {
     if (navigator.geolocation) {
         setUserGps(false, true);
     } else {
-        // userGpsMarker = new kakao.maps.CustomOverlay({  
+        // userGpsMarker = new kakao.maps.CustomOverlay({
         //     map: kakaoMap,
         //     position: centerLoc,
         //     content: '<div class="gps-marker"><div></div></div>'
@@ -84,7 +84,7 @@ $(document).ready(function () {
         // 리스트 기본높이 360px
         $('#divKakaoMap').height('calc(100% - 360px)');
         // 카카오지도 크기 변경하면 반드시 호출할 것
-        kakaoMap.relayout(); 
+        kakaoMap.relayout();
         // place code들 위로 올려줘야됨
         $('section.main .kakao-map-place-code-list').addClass('up');
         $(this).hide();
@@ -337,7 +337,7 @@ $(document).ready(function () {
     $(document).on('click', '.dialog-place-search .search-place-list .place', function() {
         var placeString = $($(this).children('input').get(0)).val();
         // var place = JSON.parse($($(this).children('input').get(0)).val());
-        
+
         createOverlay('transparent', 'SELECT_DIALOG_PLACE_SEARCH');
         createSpinner('SELECT_DIALOG_PLACE_SEARCH');
         $.post(
@@ -353,7 +353,7 @@ $(document).ready(function () {
 
                 // 기존 플레이스들 싹 없애주고
                 removeAllVisiblePlaces();
-                
+
                 var place = response.result;
                 var placeCode = getPlaceCodeFromPlaceCateGroupCode(place.p_cate_group_code);
 
@@ -395,7 +395,7 @@ $(document).ready(function () {
             'json'
         );
     });
-    
+
 });
 // End document ready
 
@@ -412,7 +412,7 @@ function setUserGps(isMoveMap, isGetPlaces) {
             var lat = position.coords.latitude;
             var lng = position.coords.longitude;
             var locPosition = new kakao.maps.LatLng(lat, lng);
-            userGpsMarker = new kakao.maps.CustomOverlay({  
+            userGpsMarker = new kakao.maps.CustomOverlay({
                 map: kakaoMap,
                 position: locPosition,
                 content: '<div class="gps-marker"><div></div></div>'

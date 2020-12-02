@@ -1,4 +1,4 @@
-
+var isLoadingGps = false;
 var initZoom = 5;
 var maxZoom = 8;
 var mapMaxZoom = 12;
@@ -33,6 +33,8 @@ $(document).ready(function () {
 
     // gps 사용 가능하다면
     if (navigator.geolocation) {
+        isLoadingGps = true;
+        $('#divGps').addClass('selected');
         setUserGps(false, true);
     } else {
         // userGpsMarker = new kakao.maps.CustomOverlay({
@@ -45,6 +47,9 @@ $(document).ready(function () {
 
     // gps 버튼 클릭
     $('#divGps').click(function() {
+        if (isLoadingGps) return;
+
+        isLoadingGps = true;
         $(this).addClass('selected');
         if (navigator.geolocation) {
             setUserGps(true, false);
@@ -434,6 +439,7 @@ function setUserGps(isMoveMap, isGetPlaces) {
                 if (zoom > maxZoom) return;
                 getPlaces(lat, lng, zoom);
             }
+            isLoadingGps = false;
             $('#divGps').removeClass('selected');
         },
         function() { // 에러, 현재 지도 중심 기준으로 place 호출
@@ -442,6 +448,7 @@ function setUserGps(isMoveMap, isGetPlaces) {
 
             var centerLoc = kakaoMap.getCenter();
             getPlaces(centerLoc.getLat(), centerLoc.getLng(), zoom);
+            isLoadingGps = false;
             $('#divGps').removeClass('selected');
         }
     );

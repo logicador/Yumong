@@ -124,4 +124,7 @@ dist
 # End of https://www.toptal.com/developers/gitignore/api/node,vscode
 
 .DS_Store
-bin
+public/images/places/*
+public/images/users/*
+python/*
+.jshintrc

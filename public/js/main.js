@@ -526,17 +526,19 @@ function removeAllVisiblePlaces() {
 
 // 하단 place 목록 뷰 세팅
 function setPlaceList(placeList) {
+    $('section.main .place-list-wrapper .place-list-body').scrollTop(0);
     $('#divPlaceList').empty();
 
     var html = '';
     for (var i = 0; i < placeList.length; i++) {
         var place = placeList[i];
+        console.log(place);
 
         html += '<div class="place" p_id="' + place.p_id + '">';
             html += '<div class="controls">';
                 // 현재 a태그로 이동 후 지도가 날라가는 현상이 있음. 실서버에서 테스트해볼것.
                 // 확인 결과 지도 날라감... iframe으로 변경해야될듯?
-                html += '<a href="' + place.p_kp_url + '" target="_blank"><div class="control kakao-place"></div></a>';
+                // html += '<a href="' + place.p_kp_url + '" target="_blank"><div class="control kakao-place"></div></a>';
                 html += '<div class="control location" p_id="' + place.p_id + '" lat="' + place.p_latitude + '" lng="' + place.p_longitude + '"><i class="fas fa-map-marker-alt"></i></div>';
             html += '</div>';
             html += '<p class="cates">' + ((place.p_cate_group_name) ? '<span class="highlight">' + place.p_cate_group_name + '</span>' : '') + place.p_cate_name + '</p>';

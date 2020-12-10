@@ -15,7 +15,7 @@ router.get('/get/places', function (req, res) {
         return;
     }
 
-    var dist = f.get_distance(zoom) * 10;
+    var dist = f.getDistance(zoom) * 10;
 
     var query = "";
 
@@ -72,12 +72,12 @@ router.get('/get/kakao/places', function (req, res) {
     var keyword = req.query.keyword;
     var page = req.query.page;
 
-    if (f.is_none(keyword)) {
+    if (f.isNone(keyword)) {
         res.json({ status: 'ERR_WRONG_KEYWORD' });
         return;
     }
 
-    if (f.is_none(page)) page = 1;
+    if (f.isNone(page)) page = 1;
 
     request.get({
         uri: 'https://dapi.kakao.com/v2/local/search/keyword.json?query=' + encodeURI(keyword) + '&page=' + page,
@@ -103,7 +103,7 @@ router.get('/get/kakao/places', function (req, res) {
 router.post('/add/place/from/user/search', function (req, res) {
     var placeString = req.body.place_string;
 
-    if (f.is_none(placeString)) {
+    if (f.isNone(placeString)) {
         res.json({ status: 'ERR_WRONG_PLACE_STRING' });
         return;
     }

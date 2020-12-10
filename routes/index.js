@@ -33,7 +33,7 @@ router.get('/search', function (req, res, next) {
 
 
 router.get('/note', function (req, res, next) {
-    if (!f.is_logined(req.session)) {
+    if (!f.isLogined(req.session)) {
         res.redirect('/login?next=/mypage');
         return;
     }
@@ -48,7 +48,7 @@ router.get('/note', function (req, res, next) {
 
 
 router.get('/mypage', function (req, res, next) {
-    if (!f.is_logined(req.session)) {
+    if (!f.isLogined(req.session)) {
         res.redirect('/login?next=/mypage');
         return;
     }

@@ -13,6 +13,7 @@ require('dotenv').config();
 
 var indexRouter = require('./routes/index');
 var webApiRouter = require('./routes/webapi');
+var adminRouter = require('./routes/admin');
 
 var app = express();
 
@@ -42,6 +43,7 @@ app.use(session({
 
 app.use('/', indexRouter);
 app.use('/webapi', webApiRouter);
+app.use('/admin', adminRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -74,13 +76,13 @@ global.o.mysql = mysql.createConnection({
 });
 
 // none check
-global.f.is_none = function(value) {
+global.f.isNone = function(value) {
     if (typeof value == 'undefined' || value == null || value == '') return true;
     return false;
 };
 
 // random id
-global.f.get_random_id = function() {
+global.f.generateRandomId = function() {
     var rand = Math.floor(Math.random() * 9999) + '';
     var pad = rand.length >= 4 ? rand : new Array(4 - rand.length + 1).join('0') + rand;
     var random_id = moment().format("YYMMDDHHmmss") + pad;
@@ -88,18 +90,18 @@ global.f.get_random_id = function() {
 };
 
 // login check
-global.f.is_logined = function(session) {
-    if (session.u_id && session.u_kakao_id) return true;
-    return false;
-};
+// global.f.isLogined = function(session) {
+//     if (session.u_id && session.u_kakao_id) return true;
+//     return false;
+// };
 
 // intcomma
-global.f.int_comma = function(value) {
+global.f.intComma = function(value) {
     return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
 
 // zoom to distance
-global.f.get_distance = function(zoom) {
+global.f.getDistance = function(zoom) {
     if (zoom == 1) return 20;
     else if (zoom == 2) return 30;
     else if (zoom == 3) return 50;

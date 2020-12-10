@@ -87,7 +87,7 @@ router.post('/webapi/start/crawling', function(req, res) {
             return;
         }
 
-        let command = 'python3 ~/VSCodeProjects/Yumong/python/naver.py';
+        let command = 'python3 ' + process.env.DIR + '/python/naver.py';
         exec(command + ' ' + result.insertId, function(error, stdout, stderr) {
             if (error) {
                 console.log(error);

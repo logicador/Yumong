@@ -87,7 +87,8 @@ router.post('/webapi/start/crawling', function(req, res) {
             return;
         }
 
-        let command = 'python3 ' + process.env.DIR + '/python/naver.py';
+        // for windows 10 hp probook
+        let command = 'python ' + process.env.DIR + '/python/naver.py';
         exec(command + ' ' + result.insertId, function(error, stdout, stderr) {
             if (error) {
                 console.log(error);
